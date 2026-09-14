@@ -1,6 +1,8 @@
 ---
 import type { Memo } from '../lib/memo';
 import { formatDate, isoDate } from '../lib/date';
+import Bi from './Bi.astro';
+import { t } from '../lib/i18n';
 
 interface Props {
   memos: Memo[];
@@ -11,7 +13,7 @@ const { memos } = Astro.props;
 
 {
   memos.length === 0 ? (
-    <p class="muted">아직 쓴 글이 없습니다.</p>
+    <Bi as="p" class="muted" ko={t.memoEmpty.ko} en={t.memoEmpty.en} />
   ) : (
     <ul class="memo-list">
       {memos.map((memo) => (

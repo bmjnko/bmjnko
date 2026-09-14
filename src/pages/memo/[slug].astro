@@ -3,6 +3,8 @@ import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { getMemos } from '../../lib/memo';
 import { formatDate, isoDate } from '../../lib/date';
+import Bi from '../../components/Bi.astro';
+import { t } from '../../lib/i18n';
 import '../../styles/prose.css';
 
 export async function getStaticPaths() {
@@ -25,7 +27,7 @@ const { Content } = await render(memo);
     </div>
   </article>
   <p class="back">
-    <a href="/memo">Memo로 돌아가기</a>
+    <a href="/memo"><Bi ko={t.backToMemo.ko} en={t.backToMemo.en} /></a>
   </p>
 </Base>
 

@@ -1,0 +1,14 @@
+---
+// 두 언어 버전을 모두 렌더링하고, 현재 언어가 아닌 쪽은 CSS로 숨긴다.
+// (global.css의 :root[data-lang] 규칙 참고)
+interface Props {
+  ko: string;
+  en: string;
+  as?: 'span' | 'p';
+  class?: string;
+}
+
+const { ko, en, as: Tag = 'span', class: className }: Props = Astro.props;
+---
+
+<Tag lang="ko" class={className}>{ko}</Tag><Tag lang="en" class={className}>{en}</Tag>

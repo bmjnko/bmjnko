@@ -1,0 +1,93 @@
+---
+import { LANGS, t } from '../lib/i18n';
+
+const labels: Record<(typeof LANGS)[number], string> = { ko: 'KR', en: 'EN' };
+---
+
+<div class="lang-toggle" role="group" aria-label={t.langToggleLabel.ko}>
+  {
+    LANGS.map((lang, i) => (
+      <>
+        {i > 0 && <span class="sep" aria-hidden="true" />}
+        <button type="button" data-lang={lang} aria-pressed="false">
+          {labels[lang]}
+        </button>
+      </>
+    ))
+  }
+</div>
+
+<script>
+  import { LANGS, LANG_STORAGE_KEY, type Lang } from '../lib/i18n';
+
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.lang-toggle button[data-lang]');
+
+  function apply(lang: Lang) {
+    root.dataset.lang = lang;
+    root.lang = lang;
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  }
+
+  function isLang(value: unknown): value is Lang {
+    return typeof value === 'string' && (LANGS as readonly string[]).includes(value);
+  }
+
+  apply(isLang(root.dataset.lang) ? root.dataset.lang : 'ko');
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const lang = button.dataset.lang;
+      if (!isLang(lang)) return;
+      apply(lang);
+      try {
+        localStorage.setItem(LANG_STORAGE_KEY, lang);
+      } catch {
+        /* 저장이 막혀 있어도 토글 자체는 동작한다 */
+      }
+    });
+  });
+</script>
+
+<style>
+  .lang-toggle {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+  }
+
+  button {
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0.15rem 0;
+    margin: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color var(--ease);
+  }
+
+  button:hover {
+    color: var(--accent);
+  }
+
+  button[aria-pressed='true'] {
+    color: var(--text);
+    cursor: default;
+  }
+
+  button[aria-pressed='true']:hover {
+    color: var(--text);
+  }
+
+  .sep {
+    width: 1px;
+    height: 0.75em;
+    background: var(--border);
+    align-self: center;
+  }
+</style>

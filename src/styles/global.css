@@ -103,6 +103,12 @@ main.container {
   color: var(--muted);
 }
 
+/* KR/EN 토글: 현재 언어(:root[data-lang])가 아닌 쪽은 숨긴다. */
+:root[data-lang='ko'] [lang='en'],
+:root[data-lang='en'] [lang='ko'] {
+  display: none;
+}
+
 .eyebrow {
   font-size: 0.8rem;
   letter-spacing: 0.08em;

@@ -6,11 +6,18 @@ import profileImage from '../assets/profile.jpg';
 // 교체 지점: 사진은 src/assets/profile.jpg를 바꾸고, 소개 문구는 아래 상수를 수정하면 됩니다.
 const profileAlt = 'Beomjoon Ko, 흰 달항아리 그림 앞에서';
 
-const intro = [
-  '안녕하세요, 고범준입니다. 이 문단은 소개 글이 들어갈 자리입니다. 지금 하고 있는 일, 관심 있는 주제, 이 홈페이지를 만든 이유 같은 것을 두세 문장으로 적어 주세요.',
-  '두 번째 문단은 조금 더 개인적인 이야기에 어울립니다. 어떤 방식으로 일하는지, 무엇을 배우고 있는지, 혹은 요즘 자주 생각하는 것들을 편하게 담을 수 있습니다.',
-  'Memo 탭에는 짧은 생각과 기록을 남깁니다.',
-];
+const intro = {
+  ko: [
+    '안녕하세요, 고범준입니다. 이 문단은 소개 글이 들어갈 자리입니다. 지금 하고 있는 일, 관심 있는 주제, 이 홈페이지를 만든 이유 같은 것을 두세 문장으로 적어 주세요.',
+    '두 번째 문단은 조금 더 개인적인 이야기에 어울립니다. 어떤 방식으로 일하는지, 무엇을 배우고 있는지, 혹은 요즘 자주 생각하는 것들을 편하게 담을 수 있습니다.',
+    'Memo 탭에는 짧은 생각과 기록을 남깁니다.',
+  ],
+  en: [
+    "Hi, I'm Beomjoon Ko. This paragraph is a placeholder for your introduction. Use two or three sentences to say what you are working on, what you care about, and why this site exists.",
+    'The second paragraph suits something more personal: how you like to work, what you are learning, or the questions you keep coming back to these days.',
+    'The Memo tab collects short thoughts and notes.',
+  ],
+};
 
 const links = [
   { label: 'Email', href: 'mailto:hello@example.com' },
@@ -26,8 +33,11 @@ const links = [
     <div class="body">
       <p class="eyebrow">About Me</p>
       <h1 class="page-title">Beomjoon Ko</h1>
-      <div class="intro">
-        {intro.map((paragraph) => <p>{paragraph}</p>)}
+      <div class="intro" lang="ko">
+        {intro.ko.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <div class="intro" lang="en">
+        {intro.en.map((paragraph) => <p>{paragraph}</p>)}
       </div>
       <ul class="links">
         {

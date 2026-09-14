@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import { SITE } from '../lib/site';
+import { DEFAULT_LANG, LANGS, LANG_STORAGE_KEY } from '../lib/i18n';
 
 interface Props {
   title?: string;
@@ -15,9 +16,19 @@ const year = new Date().getFullYear();
 ---
 
 <!doctype html>
-<html lang="ko">
+<html lang={DEFAULT_LANG} data-lang={DEFAULT_LANG}>
   <head>
     <meta charset="utf-8" />
+    <script is:inline define:vars={{ LANGS, LANG_STORAGE_KEY }}>
+      // 저장된 언어를 첫 페인트 전에 적용해 깜빡임을 막는다.
+      try {
+        const saved = localStorage.getItem(LANG_STORAGE_KEY);
+        if (LANGS.includes(saved)) {
+          document.documentElement.dataset.lang = saved;
+          document.documentElement.lang = saved;
+        }
+      } catch {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="color-scheme" content="light" />
