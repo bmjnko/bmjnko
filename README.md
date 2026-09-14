@@ -18,7 +18,8 @@ frontmatter는 `title`, `date`가 필수이고 `description`, `draft`는 선택�
 
 ## About 페이지 수정
 
-사진은 `public/images/profile.svg`를 교체하고 `src/pages/index.astro` 상단의 `profile`, `intro`, `links` 상수를 수정하면 됩니다.
+사진은 `src/assets/profile.jpg`를 교체하고 `src/pages/index.astro` 상단의 `profileAlt`, `intro`, `links` 상수를 수정하면 됩니다.
+빌드 시 Astro가 사진을 자동으로 리사이즈하고 최적화합니다.
 
 ## 배포
 

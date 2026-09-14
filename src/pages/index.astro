@@ -1,11 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import profileImage from '../assets/profile.jpg';
 
-// 교체 지점: 사진과 소개 문구는 여기만 바꾸면 됩니다.
-const profile = {
-  src: '/images/profile.svg',
-  alt: 'Beomjoon Ko 프로필 사진',
-};
+// 교체 지점: 사진은 src/assets/profile.jpg를 바꾸고, 소개 문구는 아래 상수를 수정하면 됩니다.
+const profileAlt = 'Beomjoon Ko, 흰 달항아리 그림 앞에서';
 
 const intro = [
   '안녕하세요, 고범준입니다. 이 문단은 소개 글이 들어갈 자리입니다. 지금 하고 있는 일, 관심 있는 주제, 이 홈페이지를 만든 이유 같은 것을 두세 문장으로 적어 주세요.',
@@ -22,7 +21,7 @@ const links = [
 <Base>
   <section class="about">
     <figure class="photo">
-      <img src={profile.src} alt={profile.alt} width="240" height="300" loading="eager" />
+      <Image src={profileImage} alt={profileAlt} widths={[240, 480, 720]} sizes="(max-width: 640px) 200px, 240px" loading="eager" />
     </figure>
     <div class="body">
       <p class="eyebrow">About Me</p>
@@ -60,8 +59,6 @@ const links = [
   .photo img {
     width: 100%;
     height: auto;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
     border-radius: 6px;
     border: 1px solid var(--border);
     background: var(--surface);
@@ -77,6 +74,7 @@ const links = [
 
   .intro {
     margin-top: 1.5rem;
+    font-size: 0.9em;
   }
 
   .intro p + p {
