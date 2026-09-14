@@ -2,11 +2,11 @@
 @import '@fontsource/noto-serif-kr/korean-700.css';
 
 :root {
-  --bg: #faf7f0;
-  --surface: #f3efe4;
-  --border: #e4decf;
-  --text: #2b2924;
-  --muted: #726c5f;
+  --bg: #fdfdfc;
+  --surface: #f4f4f2;
+  --border: #e5e5e2;
+  --text: #222221;
+  --muted: #6f6f6b;
   --accent: #45552b;
   --accent-soft: rgba(69, 85, 43, 0.1);
 
