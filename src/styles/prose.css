@@ -1,0 +1,104 @@
+.prose {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.prose > * + * {
+  margin-top: 1.25em;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.prose h2 {
+  font-size: 1.35rem;
+  margin-top: 2.4em;
+}
+
+.prose h3 {
+  font-size: 1.15rem;
+  margin-top: 2em;
+}
+
+.prose h4 {
+  font-size: 1rem;
+  margin-top: 1.8em;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+
+.prose li + li {
+  margin-top: 0.35em;
+}
+
+.prose blockquote {
+  padding-left: 1.1em;
+  border-left: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin-block: 2.5em;
+}
+
+.prose code {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.875em;
+  background: var(--surface);
+  padding: 0.12em 0.35em;
+  border-radius: 3px;
+}
+
+.prose pre,
+.prose pre.astro-code {
+  background: var(--surface) !important;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1em 1.1em;
+  overflow-x: auto;
+  line-height: 1.6;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.85em;
+}
+
+.prose img {
+  border-radius: 4px;
+  margin-inline: auto;
+}
+
+.prose figcaption {
+  margin-top: 0.6em;
+  font-size: 0.875rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+
+.prose th,
+.prose td {
+  padding: 0.5em 0.7em;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.prose strong {
+  font-weight: 700;
+}

@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+
+// 교체 지점: 사진과 소개 문구는 여기만 바꾸면 됩니다.
+const profile = {
+  src: '/images/profile.svg',
+  alt: 'Beomjoon Ko 프로필 사진',
+};
+
+const intro = [
+  '안녕하세요, 고범준입니다. 이 문단은 소개 글이 들어갈 자리입니다. 지금 하고 있는 일, 관심 있는 주제, 이 홈페이지를 만든 이유 같은 것을 두세 문장으로 적어 주세요.',
+  '두 번째 문단은 조금 더 개인적인 이야기에 어울립니다. 어떤 방식으로 일하는지, 무엇을 배우고 있는지, 혹은 요즘 자주 생각하는 것들을 편하게 담을 수 있습니다.',
+  'Memo 탭에는 짧은 생각과 기록을 남깁니다.',
+];
+
+const links = [
+  { label: 'Email', href: 'mailto:hello@example.com' },
+  { label: 'GitHub', href: 'https://github.com/bmjnko' },
+];
+---
+
+<Base>
+  <section class="about">
+    <figure class="photo">
+      <img src={profile.src} alt={profile.alt} width="240" height="300" loading="eager" />
+    </figure>
+    <div class="body">
+      <p class="eyebrow">About Me</p>
+      <h1 class="page-title">Beomjoon Ko</h1>
+      <div class="intro">
+        {intro.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <ul class="links">
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href} rel={link.href.startsWith('http') ? 'me noopener' : 'me'}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .photo {
+    margin: 0;
+  }
+
+  .photo img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .body {
+    padding-top: 0.25rem;
+  }
+
+  .page-title {
+    margin-top: 0.35rem;
+  }
+
+  .intro {
+    margin-top: 1.5rem;
+  }
+
+  .intro p + p {
+    margin-top: 1em;
+  }
+
+  .links {
+    display: flex;
+    gap: 1.4rem;
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .about {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .photo {
+      max-width: 200px;
+    }
+  }
+</style>

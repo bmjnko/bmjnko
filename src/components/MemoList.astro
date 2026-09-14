@@ -1,0 +1,86 @@
+---
+import type { Memo } from '../lib/memo';
+import { formatDate, isoDate } from '../lib/date';
+
+interface Props {
+  memos: Memo[];
+}
+
+const { memos } = Astro.props;
+---
+
+{
+  memos.length === 0 ? (
+    <p class="muted">아직 쓴 글이 없습니다.</p>
+  ) : (
+    <ul class="memo-list">
+      {memos.map((memo) => (
+        <li>
+          <a href={`/memo/${memo.id}`}>
+            <time datetime={isoDate(memo.data.date)}>{formatDate(memo.data.date)}</time>
+            <span class="title">{memo.data.title}</span>
+            {memo.data.draft && <span class="draft">draft</span>}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+<style>
+  .memo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li + li {
+    border-top: 1px solid var(--border);
+  }
+
+  a {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    padding-block: 0.9rem;
+    text-decoration: none;
+  }
+
+  time {
+    flex: none;
+    width: 6.2rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .title {
+    transition: color var(--ease);
+  }
+
+  a:hover .title {
+    color: var(--accent);
+  }
+
+  .draft {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0 0.4em;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 480px) {
+    a {
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    time {
+      width: auto;
+    }
+  }
+</style>

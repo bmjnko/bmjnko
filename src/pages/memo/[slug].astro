@@ -1,0 +1,53 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getMemos } from '../../lib/memo';
+import { formatDate, isoDate } from '../../lib/date';
+import '../../styles/prose.css';
+
+export async function getStaticPaths() {
+  const memos = await getMemos();
+  return memos.map((memo) => ({ params: { slug: memo.id }, props: { memo } }));
+}
+
+const { memo } = Astro.props;
+const { Content } = await render(memo);
+---
+
+<Base title={memo.data.title} description={memo.data.description}>
+  <article>
+    <header class="head">
+      <time datetime={isoDate(memo.data.date)} class="muted">{formatDate(memo.data.date)}</time>
+      <h1 class="page-title">{memo.data.title}</h1>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+  <p class="back">
+    <a href="/memo">Memo로 돌아가기</a>
+  </p>
+</Base>
+
+<style>
+  .head {
+    margin-bottom: 2.5rem;
+  }
+
+  time {
+    display: block;
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .page-title {
+    margin-top: 0.4rem;
+  }
+
+  .back {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+</style>

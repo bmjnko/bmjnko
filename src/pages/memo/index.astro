@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import MemoList from '../../components/MemoList.astro';
+import { getMemos } from '../../lib/memo';
+
+const memos = await getMemos();
+---
+
+<Base title="Memo" description="짧은 생각과 기록.">
+  <header class="head">
+    <h1 class="page-title">Memo</h1>
+    <p class="muted">짧은 생각과 기록을 남깁니다.</p>
+  </header>
+  <MemoList memos={memos} />
+</Base>
+
+<style>
+  .head {
+    margin-bottom: 2rem;
+  }
+
+  .head p {
+    margin-top: 0.4rem;
+  }
+</style>

@@ -1,0 +1,118 @@
+@import '@fontsource/noto-serif-kr/korean-400.css';
+@import '@fontsource/noto-serif-kr/korean-700.css';
+
+:root {
+  --bg: #faf7f0;
+  --surface: #f3efe4;
+  --border: #e4decf;
+  --text: #2b2924;
+  --muted: #726c5f;
+  --accent: #45552b;
+  --accent-soft: rgba(69, 85, 43, 0.1);
+
+  /* 라틴 글리프는 Times New Roman, 한글은 Noto Serif KR로 자동 폴백 */
+  --font: 'Times New Roman', Times, 'Noto Serif KR', serif;
+
+  --measure: 680px;
+  --gutter: 20px;
+  --ease: 150ms ease;
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote,
+pre {
+  margin: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition:
+    color var(--ease),
+    text-decoration-color var(--ease);
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--measure) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+main.container {
+  flex: 1;
+  padding-block: 2.5rem 5rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.page-title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
