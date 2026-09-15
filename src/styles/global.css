@@ -1,6 +1,43 @@
 @import '@fontsource/noto-serif-kr/korean-400.css';
 @import '@fontsource/noto-serif-kr/korean-700.css';
 
+/*
+ * Times New Roman은 같은 px에서 한글(Noto Serif KR)보다 작게 보인다.
+ * 시스템 폰트를 size-adjust로 감싸 영문 글리프만 균일하게 키운다.
+ * 폰트가 없는 환경에서는 local()이 실패하고 다음 폰트(Times)로 넘어간다.
+ */
+@font-face {
+  font-family: 'Times New Roman Adjusted';
+  font-style: normal;
+  font-weight: 400;
+  size-adjust: 107%;
+  src: local('Times New Roman'), local('TimesNewRomanPSMT');
+}
+
+@font-face {
+  font-family: 'Times New Roman Adjusted';
+  font-style: normal;
+  font-weight: 700;
+  size-adjust: 107%;
+  src: local('Times New Roman Bold'), local('TimesNewRomanPS-BoldMT');
+}
+
+@font-face {
+  font-family: 'Times New Roman Adjusted';
+  font-style: italic;
+  font-weight: 400;
+  size-adjust: 107%;
+  src: local('Times New Roman Italic'), local('TimesNewRomanPS-ItalicMT');
+}
+
+@font-face {
+  font-family: 'Times New Roman Adjusted';
+  font-style: italic;
+  font-weight: 700;
+  size-adjust: 107%;
+  src: local('Times New Roman Bold Italic'), local('TimesNewRomanPS-BoldItalicMT');
+}
+
 :root {
   --bg: #fdfdfc;
   --surface: #f4f4f2;
@@ -11,7 +48,7 @@
   --accent-soft: rgba(69, 85, 43, 0.1);
 
   /* 라틴 글리프는 Times New Roman, 한글은 Noto Serif KR로 자동 폴백 */
-  --font: 'Times New Roman', Times, 'Noto Serif KR', serif;
+  --font: 'Times New Roman Adjusted', 'Times New Roman', Times, 'Noto Serif KR', serif;
 
   --measure: 680px;
   --gutter: 20px;
